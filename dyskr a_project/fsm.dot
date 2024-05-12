@@ -1,0 +1,15 @@
+digraph FSM {
+    SLEEP -> AWAKE [label="hour=7\n(event > 0.5)"];
+    SLEEP -> PANIC [label="hour=8"];
+    PANIC -> EAT [label="hour=9\n(event > 0.7)"];
+    PANIC -> WORK;
+    AWAKE -> EAT [label="hour=8"];
+    EAT -> WORK [label="hour=14"];
+    EAT -> WORK [label="hour=9"];
+    WORK -> RELAX [label="event < 0.2\n(13<=hour<=18)"];
+    WORK -> RELAX [label="hour=18"];
+    WORK -> EAT [label="hour=13"];
+    WORK -> WORK [label="default"];
+    RELAX -> SLEEP [label="hour=22"];
+    RELAX -> RELAX [label="default"];
+}
